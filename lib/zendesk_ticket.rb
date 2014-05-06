@@ -24,7 +24,7 @@ class ZendeskTicket
       when "New" then "Ticket is New. "
       when "Open" then "Ticket is Open. "
       when "Pending" then "Ticket is Pending. "
-      when "hold" then "Ticket is On Hold. "
+      when "Hold" then "Ticket is On Hold. "
       when "Solved" then "Ticket has been Solved. "
       when "Closed" then "Ticket has been Closed. "
       else "Ticket text is unknown. "
