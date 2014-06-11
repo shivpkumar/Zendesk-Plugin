@@ -3,8 +3,4 @@ class ExistingZendeskTicket < ZendeskTicket
     super
     @ticket = @client.search(:query => existing_id).to_a.try(:first)
   end
-
-  def exists?
-    @ticket.present?
-  end
 end

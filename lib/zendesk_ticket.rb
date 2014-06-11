@@ -34,4 +34,8 @@ class ZendeskTicket
       else "Ticket text is unknown. "
     end + "Click to view in Zendesk"
   end
+
+  def exists?
+    @ticket.present?
+  end
 end
