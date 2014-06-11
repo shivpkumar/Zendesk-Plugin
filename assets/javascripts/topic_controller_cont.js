@@ -1,6 +1,6 @@
-Discourse.TopicController = Discourse.TopicController.extend({
-  zendeskTicket: { 
-    text: 'Create Zendesk Ticket', 
+Discourse.TopicController.reopen({
+  zendeskTicket: {
+    text: 'Create Zendesk Ticket',
     title: 'Click to create a new ticket in Zendesk',
     exists: false
   },
