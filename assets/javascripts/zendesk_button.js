@@ -10,7 +10,7 @@ Discourse.ZendeskButton = Discourse.ButtonView.extend({
     if (this.get('controller.zendeskTicket.exists')) {
       this.get('controller').send('redirectToZendesk', this.get('controller.zendeskTicket.url'));
     } else {
-      this.get('controller').send('sendToZendesk', this.get('controller.postStream.posts'), this.get('controller.currentUser'));
+      this.get('controller').send('sendToZendesk', this.get('controller.postStream.posts'), this.get('controller.currentUser'), this.get('controller.postStream.firstLoadedPost.username'));
     }
   },
 

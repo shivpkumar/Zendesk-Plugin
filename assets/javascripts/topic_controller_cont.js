@@ -6,7 +6,7 @@ Discourse.TopicController.reopen({
   },
 
   actions: {
-    sendToZendesk: function(posts, user) {
+    sendToZendesk: function(posts, currentUser, topicCreatorUsername) {
       var topicController = this,
           post = posts.shift(),
           title = post.topic.title,
@@ -15,17 +15,19 @@ Discourse.TopicController.reopen({
           topicId = post.topic_id,
           categoryId = post.topic.category_id,
           topicSlug = post.topic_slug,
-          email = false,
+          collaboratorEmail = false,
+          requesterInfo = false,
           categoryName = false;
 
       var makeAjaxCall = function() {
-        if (email && categoryName) {
+        if (collaboratorEmail && requesterInfo && categoryName) {
           return Discourse.ajax("/zendesk/create_ticket", {
             dataType: 'json',
             data: { post_title: title,
                     html_comment: bodyAsHtml,
                     created_at: createdAt,
-                    email: email,
+                    requester: requesterInfo,
+                    collaborator_email: collaboratorEmail,
                     category_name: categoryName,
                     external_id: topicSlug + topicId,
                     post_url: window.location.href },
@@ -36,8 +38,12 @@ Discourse.TopicController.reopen({
         }
       };
       
-      Discourse.User.findByUsername(user.get('username')).then(function (user) {
-        email = user.get('email');
+      Discourse.User.findByUsername(currentUser.get('username')).then(function (currentUser) {
+        collaboratorEmail = currentUser.get('email');
+      }).then(makeAjaxCall);
+
+      Discourse.User.findByUsername(topicCreatorUsername).then(function (topicCreator) {
+        requesterInfo = { name: topicCreator.get('name'), email: topicCreator.get('email')};
       }).then(makeAjaxCall);
 
       Discourse.Category.reloadBySlugOrId(categoryId).then(function (category) {

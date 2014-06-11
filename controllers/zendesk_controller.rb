@@ -3,14 +3,14 @@ class ::ZendeskController < ::ApplicationController
 
   def create_ticket            
     ticket = NewZendeskTicket.new(
-      :ticket_data => {
-        :external_id => params[:external_id],
-        :subject => params[:post_title],
-        :created_at => params[:created_at],
-        :requester => { :email => params[:email] }
+      ticket_data: {
+        external_id: params[:external_id],
+        subject: params[:post_title],
+        requester: params[:requester],
+        collaborators: [params[:collaborator_email]]
       },
-      :post_url => params[:post_url],
-      :html_comment => params[:html_comment]
+      post_url: params[:post_url],
+      html_comment: params[:html_comment]
     )
 
     render json: { url: ticket.url, text: ticket.text, title: ticket.title, css_class: ticket.status[0], exists: true }
