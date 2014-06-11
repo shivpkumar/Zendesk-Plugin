@@ -4,6 +4,9 @@ class ZendeskTicket
       config.url = "https://support.newrelic.com/api/v2"
       config.username = ENV['ZENDESK_USERNAME']
       config.token = ENV['ZENDESK_TOKEN']
+      
+      require 'logger'
+      config.logger = Logger.new(File.join(Rails.root, "plugins", "zendesk", "logs", "zendesk.log"))
     end
   end
 
