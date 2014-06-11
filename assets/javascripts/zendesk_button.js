@@ -20,7 +20,7 @@ Discourse.ZendeskButton = Discourse.ButtonView.extend({
 });
 
 Discourse.TopicFooterButtonsView.reopen({
-  addAlertButton: function() {
+  addZendeskButton: function() {
     if (this.get('controller.currentUser.staff')) {
       this.attachViewClass(Discourse.ZendeskButton);
     }
