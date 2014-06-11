@@ -16,22 +16,22 @@ class ZendeskTicket
   end
 
   def status
-    @ticket.status.titleize
+    @ticket.status
   end
 
   def text
-    return "View #{status} Zendesk Ticket"
+    return "View #{status.titleize} Zendesk Ticket"
   end
 
   def title
     case status
-      when "New" then "Ticket is New. "
-      when "Open" then "Ticket is Open. "
-      when "Pending" then "Ticket is Pending. "
-      when "Hold" then "Ticket is On Hold. "
-      when "Solved" then "Ticket has been Solved. "
-      when "Closed" then "Ticket has been Closed. "
-      else "Ticket text is unknown. "
+      when "new"      then "Ticket is New. "
+      when "open"     then "Ticket is Open. "
+      when "pending"  then "Ticket is Pending. "
+      when "solved"   then "Ticket has been Solved. "
+      when "closed"   then "Ticket has been Closed. "
+      when "hold"     then "Ticket is on Hold. "
+      else "Ticket status is unknown. "
     end + "Click to view in Zendesk"
   end
 

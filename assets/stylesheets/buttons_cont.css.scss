@@ -2,20 +2,24 @@
   background-color: #699101;
   color: white;
   &:hover { background-color: #5e8200; }
-  &.N {
+  &.new {
     background-color: #eed562;
     &:hover { background-color: #d6bf58; } 
   }
-  &.S, &.C {
+  &.solved, &.closed {
     background-color: #b4b4b4;
     &:hover { background-color: #a2a2a2; } 
   }
-  &.O {
+  &.open {
     background-color: #f17f7f;
     &:hover { background-color: #d87272; } 
   }
-  &.P {
+  &.pending {
     background-color: #9bd6ec;
     &:hover { background-color: #8bc0d4; } 
+  }
+  &.hold {
+    background-color: #666;
+    &:hover { background-color: #515151; }
   }
 }
