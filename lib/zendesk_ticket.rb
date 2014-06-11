@@ -1,7 +1,7 @@
 class ZendeskTicket
   def initialize(params)
     @client = ZendeskAPI::Client.new do |config|
-      config.url = "https://support.newrelic.com/api/v2"
+      config.url = "#{ENV['ZENDESK_API_URL']}/api/v2" # e.g. https://support.mydesk.com
       config.username = ENV['ZENDESK_USERNAME']
       config.token = ENV['ZENDESK_TOKEN']
       
@@ -11,7 +11,8 @@ class ZendeskTicket
   end
 
   def url
-    "https://newrelic.zendesk.com/agent/#/tickets/#{@ticket.id}"
+    # ENV['ZENDESK_TICKET_URL'] => e.g. https://mydesk.newrelic.com
+    "#{ENV['ZENDESK_TICKET_URL']}/agent/#/tickets/#{@ticket.id}"
   end
 
   def status
