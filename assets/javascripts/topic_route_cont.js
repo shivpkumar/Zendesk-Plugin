@@ -4,6 +4,6 @@ Discourse.TopicRoute.on("setupTopicController", function(event) {
     data: { external_id: event.currentModel.slug + event.currentModel.id },
     type: 'GET'
   }).then(function (ticket) {
-    event.controller.setProperties({ zendeskTicket: ticket });
+    if (ticket) event.controller.setProperties({ zendeskTicket: ticket });
   });
 });
