@@ -46,7 +46,7 @@ Discourse.TopicController.reopen({
         requesterInfo = { name: topicCreator.get('name'), email: topicCreator.get('email')};
       }).then(makeAjaxCall);
 
-      Discourse.Category.reloadBySlugOrId(categoryId).then(function (category) {
+      Discourse.Category.reloadById(categoryId).then(function (category) {
         categoryName = category.get('name');
       }).then(makeAjaxCall);
     },
