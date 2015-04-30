@@ -1,5 +1,5 @@
 Discourse.ZendeskButton = Discourse.ButtonView.extend({
-  shouldRerender: Discourse.View.renderIfChanged('controller.zendeskTicket.exists'),
+  rerenderTriggers: ['controller.zendeskTicket.exists'],
 
   classNames: ['zendesk'],
   classNameBindings: ['controller.zendeskTicket.css_class'],
