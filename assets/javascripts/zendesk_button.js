@@ -6,15 +6,15 @@ Discourse.ZendeskButton = Discourse.ButtonView.extend({
   titleBinding: 'controller.zendeskTicket.title',
   textBinding: 'controller.zendeskTicket.text',
 
-  click: function() {
+  click() {
     if (this.get('controller.zendeskTicket.exists')) {
       this.get('controller').send('redirectToZendesk', this.get('controller.zendeskTicket.url'));
     } else {
-      this.get('controller').send('sendToZendesk', this.get('controller.postStream.posts'), this.get('controller.currentUser'), this.get('controller.postStream.firstLoadedPost.username'));
+      this.get('controller').send('sendToZendesk', this.get('controller.model.postStream.posts'), this.get('controller.currentUser'), this.get('controller.model.postStream.firstLoadedPost.username'));
     }
   },
 
-  renderIcon: function(buffer) {
+  renderIcon(buffer) {
     buffer.push("<i class='fa fa-ticket'></i>");
   }
 });
