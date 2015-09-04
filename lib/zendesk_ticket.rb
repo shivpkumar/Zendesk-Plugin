@@ -4,9 +4,9 @@ class ZendeskTicket
       config.url = "#{ENV['ZENDESK_API_URL']}/api/v2" # e.g. https://support.mydesk.com
       config.username = ENV['ZENDESK_USERNAME']
       config.token = ENV['ZENDESK_TOKEN']
-      
+
       require 'logger'
-      config.logger = Logger.new(File.join(Rails.root, "plugins", "zendesk", "logs", "zendesk.log"))
+      config.logger = Logger.new(File.expand_path("../../logs/zendesk.log", __FILE__))
     end
   end
 
